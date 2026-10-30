@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mi máquina de pan · Guía de recetas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FFF0F6;
+  --dots:#FFD6E7;
+  --pink:#FF8FB8;
+  --pink-soft:#FFB6D1;
+  --pink-pale:#FFD0E3;
+  --pink-deep:#D6457F;
+  --pink-text:#A8245A;
+  --ink:#4A2236;
+  --lav:#EFE4FF;
+  --lav-ink:#563488;
+  --cream:#FFF1C9;
+  --cream-ink:#7A5200;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  font-family:'Nunito',system-ui,sans-serif;
+  color:var(--ink);
+  background-color:var(--bg);
+  background-image:radial-gradient(var(--dots) 2px,transparent 2px);
+  background-size:28px 28px;
+  line-height:1.45;
+}
+.wrap{max-width:920px;margin:0 auto;padding:32px 18px 48px}
+h1,h2,h3{font-family:'Fredoka',system-ui,sans-serif;font-weight:600;margin:0}
+.icon{width:1em;height:1em;fill:currentColor;flex:none}
+
+/* Portada */
+.cover{
+  background:#FFE0EC;border:3px dashed var(--pink);border-radius:36px;
+  padding:32px 24px 36px;text-align:center;margin-bottom:28px;
+}
+.cover svg.loaf{width:min(240px,60vw);height:auto}
+.cover h1{font-size:clamp(36px,9vw,58px);line-height:1.05;color:var(--pink-text);margin-top:6px}
+.cover p{margin:8px 0 0;font-size:clamp(17px,4vw,22px);font-weight:700}
+.badges{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:16px}
+.badge{background:#fff;color:var(--pink-text);border-radius:999px;padding:6px 16px;font-weight:700;font-size:16px}
+.btn{
+  margin-top:20px;font-family:'Fredoka',sans-serif;font-weight:600;font-size:18px;
+  background:var(--pink-deep);color:#fff;border:0;border-radius:999px;padding:12px 28px;
+  cursor:pointer;box-shadow:0 5px 0 #F6A5C6;
+}
+.btn:active{transform:translateY(3px);box-shadow:0 2px 0 #F6A5C6}
+.btn:focus-visible,.chip:focus-visible{outline:3px solid var(--lav-ink);outline-offset:3px}
+
+/* Tarjetas */
+.card{
+  background:#fff;border:3px solid var(--pink-soft);border-radius:28px;
+  padding:22px 24px 26px;margin:0 0 30px;box-shadow:0 7px 0 var(--pink-pale);
+}
+.card.gold{background:#FFFBEA;border-color:#FFD98A;box-shadow:0 7px 0 #FFEBB8}
+.hd{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.num{
+  flex:none;width:54px;height:54px;border-radius:50%;background:var(--pink-deep);color:#fff;
+  font-family:'Fredoka',sans-serif;font-weight:600;font-size:26px;
+  display:flex;align-items:center;justify-content:center;box-shadow:0 4px 0 #F6A5C6;
+}
+.hd h2,.hd h3{font-size:clamp(24px,6vw,32px);color:var(--pink-text);flex:1}
+.hd .icon{font-size:38px}
+
+.group{
+  display:flex;align-items:center;gap:12px;margin:42px 4px 20px;
+  font-size:clamp(28px,7vw,40px);color:var(--pink-text);
+}
+.group .icon{font-size:36px;color:var(--pink)}
+.group small{display:block;font-family:'Nunito',sans-serif;font-size:16px;font-weight:700;color:var(--ink)}
+
+/* Índice */
+.index{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.chip{
+  display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);
+  background:var(--bg);border:2px solid var(--pink-pale);border-radius:999px;
+  padding:6px 14px 6px 6px;font-weight:700;font-size:16px;
+}
+.chip b{
+  flex:none;width:30px;height:30px;border-radius:50%;background:var(--pink-deep);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-family:'Fredoka',sans-serif;font-size:15px;font-weight:600;
+}
+.chip:hover{background:#fff;border-color:var(--pink)}
+
+/* Tips */
+.tips{list-style:none;margin:0;padding:0}
+.tips li{display:flex;gap:12px;align-items:flex-start;margin:0 0 12px;font-size:17px}
+.tips li:last-child{margin-bottom:0}
+.tips .icon{margin-top:4px;font-size:18px;color:var(--pink)}
+
+/* Tablas */
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table.t{width:100%;min-width:600px;border-collapse:collapse;font-size:17px}
+table.t.one{min-width:0}
+.t th{
+  background:#FFE3EE;color:var(--pink-text);font-family:'Fredoka',sans-serif;font-weight:600;
+  font-size:16px;padding:10px 12px;text-align:left;white-space:nowrap;
+}
+.t th:first-child{border-radius:14px 0 0 14px}
+.t th:last-child{border-radius:0 14px 14px 0}
+.t td{padding:11px 12px;border-bottom:2px dashed var(--pink-pale);vertical-align:middle}
+.t tr:last-child td{border-bottom:0}
+.t .n{width:34px;font-family:'Fredoka',sans-serif;font-weight:600;color:var(--pink-deep)}
+.t .ing{font-weight:700}
+.pill{display:inline-block;background:var(--lav);color:var(--lav-ink);border-radius:999px;padding:4px 12px;font-size:14px;font-weight:700}
+.pill.w{background:var(--cream);color:var(--cream-ink)}
+.note{margin:16px 0 0;padding:12px 16px;background:#FFF7E0;border-radius:18px;font-size:16px;color:#5B4300}
+
+/* Programas de tiempo / temperatura */
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.fact{background:var(--bg);border:2px solid var(--pink-pale);border-radius:20px;padding:14px 16px}
+.fact span{display:block;font-size:14px;font-weight:700;color:var(--pink-text)}
+.fact strong{display:block;font-family:'Fredoka',sans-serif;font-weight:600;font-size:26px;line-height:1.2}
+.fact em{font-style:normal;font-size:15px}
+
+.foot{text-align:center;font-weight:700;font-size:15px;color:var(--pink-text);margin-top:36px}
+
+@media (max-width:520px){
+  .card{padding:18px 16px 22px;border-radius:24px}
+  .num{width:46px;height:46px;font-size:22px}
+}
+
+@media print{
+  @page{margin:12mm}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{background:#fff}
+  .noprint{display:none !important}
+  .wrap{padding:0;max-width:none}
+  .card{break-inside:avoid;box-shadow:none;margin-bottom:18px}
+  .group{break-after:avoid}
+  .tw{overflow:visible}
+  table.t{min-width:0}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="heart" viewBox="0 0 24 24"><path d="M12 21.5C5 16.5 2 12.8 2 8.8 2 6 4.1 4 6.6 4c2 0 3.7 1.1 5.4 3.2C13.7 5.1 15.4 4 17.4 4 19.9 4 22 6 22 8.8c0 4-3 7.7-10 12.7z"/></symbol>
+  <symbol id="spark" viewBox="0 0 24 24"><path d="M12 2l2.2 7.3L22 12l-7.8 2.7L12 22l-2.2-7.3L2 12l7.8-2.7z"/></symbol>
+</svg>
+
+<div class="wrap">
+
+<header class="cover">
+  <svg class="loaf" viewBox="0 0 200 160" role="img" aria-label="Pancito kawaii sonriente">
+    <path d="M28 78 C20 40 60 22 100 22 C140 22 180 40 172 78 L172 128 Q172 144 156 144 L44 144 Q28 144 28 128 Z" fill="#F6C98E" stroke="#B97A3D" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M62 44 Q100 30 138 44" fill="none" stroke="#E4A560" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="76" cy="96" r="6" fill="#4A2236"/>
+    <circle cx="124" cy="96" r="6" fill="#4A2236"/>
+    <ellipse cx="60" cy="110" rx="10" ry="6" fill="#FF8FB8"/>
+    <ellipse cx="140" cy="110" rx="10" ry="6" fill="#FF8FB8"/>
+    <path d="M92 106 Q100 117 108 106" fill="none" stroke="#4A2236" stroke-width="4" stroke-linecap="round"/>
+    <path d="M24 20l3 8 8 3-8 3-3 8-3-8-8-3 8-3z" fill="#FF8FB8"/>
+    <path d="M176 10l2.5 6.5 6.5 2.5-6.5 2.5-2.5 6.5-2.5-6.5-6.5-2.5 6.5-2.5z" fill="#C9A7F5"/>
+  </svg>
+  <h1>Mi máquina de pan</h1>
+  <p>Guía de recetas · Ultracomb HP 2502</p>
+  <div class="badges">
+    <span class="badge">19 programas</span>
+    <span class="badge">500 g · 750 g · 1000 g</span>
+  </div>
+  <button class="btn noprint" type="button" onclick="window.print()">Guardar como PDF</button>
+</header>
+
+<section class="card" aria-labelledby="indice">
+  <div class="hd"><svg class="icon" style="color:var(--pink)" aria-hidden="true"><use href="#heart"/></svg><h2 id="indice">Menú de programas</h2></div>
+  <nav class="index" aria-label="Índice de recetas">
+    <a class="chip" href="#r1"><b>1</b>Pan básico</a>
+    <a class="chip" href="#r2"><b>2</b>Pan rápido</a>
+    <a class="chip" href="#r3"><b>3</b>Pan dulce</a>
+    <a class="chip" href="#r4"><b>4</b>Pan francés</a>
+    <a class="chip" href="#r5"><b>5</b>Pan integral</a>
+    <a class="chip" href="#r6"><b>6</b>Pan de arroz</a>
+    <a class="chip" href="#r7"><b>7</b>Pan sin gluten</a>
+    <a class="chip" href="#r8"><b>8</b>Postre</a>
+    <a class="chip" href="#r9"><b>9</b>Mix</a>
+    <a class="chip" href="#r10"><b>10</b>Masa</a>
+    <a class="chip" href="#r11"><b>11</b>Amasado</a>
+    <a class="chip" href="#r12"><b>12</b>Torta</a>
+    <a class="chip" href="#r13"><b>13</b>Mermelada</a>
+    <a class="chip" href="#r14"><b>14</b>Yogurt</a>
+    <a class="chip" href="#r15"><b>15</b>Hornear</a>
+    <a class="chip" href="#r16"><b>16</b>Arroz</a>
+    <a class="chip" href="#r17"><b>17</b>Vino de arroz</a>
+    <a class="chip" href="#r18"><b>18</b>Descongelar</a>
+    <a class="chip" href="#r19"><b>19</b>Salteado</a>
+  </nav>
+</section>
+
+<section class="card gold" aria-labelledby="tips">
+  <div class="hd"><svg class="icon" style="color:#F2B63D" aria-hidden="true"><use href="#spark"/></svg><h2 id="tips" style="color:#8A5A00">Tips de oro</h2></div>
+  <ul class="tips">
+    <li><svg class="icon" aria-hidden="true"><use href="#heart"/></svg><span>Cargá los ingredientes en el <b>orden numerado</b> de cada receta (la columna #).</span></li>
+    <li><svg class="icon" aria-hidden="true"><use href="#heart"/></svg><span><b>Levadura instantánea:</b> sobre la harina seca, sin que toque ningún líquido.</span></li>
+    <li><svg class="icon" aria-hidden="true"><use href="#heart"/></svg><span><b>Sal y azúcar:</b> cada una en un costado del molde, donde lo indica la receta.</span></li>
+    <li><svg class="icon" aria-hidden="true"><use href="#heart"/></svg><span><b>Pan rápido:</b> el agua va tibia, entre 40 y 50 °C.</span></li>
+    <li><svg class="icon" aria-hidden="true"><use href="#heart"/></svg><span>Las medidas están <b>tal cual figuran en el manual</b>: ahí se mezclan "cuchara", "cucharada" y "cucharadita".</span></li>
+  </ul>
+</section>
+
+<!-- ============ PANES ============ -->
+<h2 class="group"><svg class="icon" aria-hidden="true"><use href="#heart"/></svg><span>Panes<small>Programas 1 a 7 · elegí tu tamaño: 1000 g, 750 g o 500 g</small></span></h2>
+
+<section class="card" id="r1" aria-labelledby="t1">
+  <div class="hd"><div class="num">1</div><h3 id="t1">Pan básico</h3></div>
+  <div class="tw"><table class="t">
+    <tr><th>#</th><th>Ingrediente</th><th>1000 g</th><th>750 g</th><th>500 g</th><th>Tip</th></tr>
+    <tr><td class="n">1</td><td class="ing">Agua</td><td>320 ml</td><td>260 ml</td><td>180 ml</td><td></td></tr>
+    <tr><td class="n">2</td><td class="ing">Sal</td><td>2 cucharadas</td><td>1.5 cucharada</td><td>1 cucharada</td><td><span class="pill">en un costado del molde</span></td></tr>
+    <tr><td class="n">3</td><td class="ing">Azúcar</td><td>3 cucharaditas</td><td>2.5 cucharaditas</td><td>2 cucharaditas</td><td><span class="pill">en un costado del molde</span></td></tr>
+    <tr><td class="n">4</td><td class="ing">Aceite</td><td>4 cucharaditas</td><td>3 cucharaditas</td><td>2.5 cucharaditas</td><td></td></tr>
+    <tr><td class="n">5</td><td class="ing">Harina de alto gluten</td><td>3.5 tazas / 500 g</td><td>2.75 tazas / 400 g</td><td>2.25 tazas / 300 g</td><td></td></tr>
+    <tr><td class="n">6</td><td class="ing">Levadura instantánea</td><td>1.2 cucharadas</td><td>1 cucharada</td><td>0.8 cucharada</td><td><span class="pill w">sobre la harina seca, sin líquidos</span></td></tr>
+  </table></div>
+</section>
+
+<section class="card" id="r2" aria-labelledby="t2">
+  <div class="hd"><div class="num">2</div><h3 id="t2">Pan rápido</h3></div>
+  <div class="tw"><table class="t">
+    <tr><th>#</th><th>Ingrediente</th><th>1000 g</th><th>750 g</th><th>500 g</th><th>Tip</th></tr>
+    <tr><td class="n">1</td><td class="ing">Agua</td><td>320 ml</td><td>260 ml</td><td>180 ml</td><td><span class="pill w">tibia: 40 a 50 °C</span></td></tr>
+    <tr><td class="n">2</td><td class="ing">Sal</td><td>2 cucharadas</td><td>1.5 cucharadas</td><td>1 cucharada</td><td><span class="pill">en un costado del molde</span></td></tr>
+    <tr><td class="n">3</td><td class="ing">Azúcar</td><td>3 cucharaditas</td><td>2.5 cucharaditas</td><td>2 cucharaditas</td><td><span class="pill">en un costado del molde</span></td></tr>
+    <tr><td class="n">4</td><td class="ing">Aceite</td><td>4 cucharaditas</td><td>3 cucharaditas</td><td>2.5 cucharaditas</td><td></td></tr>
+    <tr><td class="n">5</td><td class="ing">Harina de alto gluten</td><td>3.5 tazas / 500 g</td><td>2.75 tazas / 400 g</td><td>2.25 tazas / 300 g</td><td></td></tr>
+    <tr><td class="n">6</td><td class="ing">Levadura instantánea</td><td>3.5 cucharadas</td><td>3 cucharadas</td><td>2.5 cucharadas</td><td><span class="pill w">sobre la harina seca, sin líquidos</span></td></tr>
+  </table></div>
+</section>
+
+<section class="card" id="r3" aria-labelledby="t3">
+  <div class="hd"><div class="num">3</div><h3 id="t3">Pan dulce</h3></div>
+  <div class="tw"><table class="t">
+    <tr><th>#</th><th>Ingrediente</th><th>1000 g</th><th>750 g</th><th>500 g</th><th>Tip</th></tr>
+    <tr><td class="n">1</td><td class="ing">Agua</td><td>300 ml</td><td>240 ml</td><td>160 ml</td><td></td></tr>
+    <tr><td class="n">2</td><td class="ing">Sal</td><td>1 cucharada</td><td>0.5 cucharada</td><td>0.5 cucharada</td><td></td></tr>
+    <tr><td class="n">3</td><td class="ing">Azúcar</td><td>0.4 taza</td><td>0.3 taza</td><td>0.2 taza</td><td><span class="pill">en un costado del molde</span></td></tr>
+    <tr><td class="n">4</td><td class="ing">Aceite</td><td>2 cucharaditas</td><td>1.5 cucharaditas</td><td>1 cucharadita</td><td></td></tr>
+    <tr><td class="n">5</td><td class="ing">Harina de alto gluten</td><td>4 cucharaditas</td><td>3 cucharaditas</td><td>2.5 cucharaditas</td><td></td></tr>
+    <tr><td class="n">6</td><td class="ing">Harina integral</td><td>3.5 tazas / 500 g</td><td>2.75 tazas / 400 g</td><td>2.25 tazas / 300 g</td><td></td></tr>
+    <tr><td class="n">7</td><td class="ing">Levadura instantánea</td><td>1.5 cucharadas</td><td>1.25 cucharadas</td><td>1 cucharada</td><td><span class="pill w">sobre la harina seca, sin líquidos</span></td></tr>
+  </table></div>
+  <p class="note">Ojo: en el manual la harina de alto gluten de este pan figura en cucharaditas, y parece un error de imprenta (las otras recetas usan tazas o gramos). Conviene confirmar esa cantidad antes de hacerlo.</p>
+</section>
+
+<section class="card" id="r4" aria-labelledby="t4">
+  <div class="hd"><div class="num">4</div><h3 id="t4">Pan francés</h3></div>
+  <div class="tw"><table class="t">
+    <tr><th>#</th><th>Ingrediente</th><th>1000 g</th><th>750 g</th><th>500 g</th><th>Tip</th></tr>
+    <tr><td class="n">1</td><td class="ing">Agua</td><td>320 ml</td><td>260 ml</td><td>180 ml</td><td></td></tr>
+    <tr><td class="n">2</td><td class="ing">Sal</td><td>3 cucharadas</td><td>2.5 cucharadas</td><td>2 cucharadas</td><td><span class="pill">en un costado del molde</span></td></tr>
+    <tr><td class="n">3</td><td class="ing">Azúcar</td><td>2 cucharas</td><td>1.5 cucharas</td><td>1.25 cucharas</td><td><span class="pill">en un costado del molde</span></td></tr>
+    <tr><td class="n">4</td><td class="ing">Aceite</td><td>2 cucharas</td><td>1.5 cucharas</td><td>1.25 cucharas</td><td></td></tr>
+    <tr><td class="n">5</td><td class="ing">Harina de alto gluten</td><td>3.5 tazas / 500 g</td><td>2.75 tazas / 400 g</td><td>2.25 tazas / 300 g</td><td></td></tr>
+    <tr><td class="n">6</td><td class="ing">Levadura instantánea</td><td>1.5 cucharadas</td><td>1.25 cucharadas</td><td>1 cucharada</td><td><span class="pill w">sobre la harina seca, sin líquidos</span></td></tr>
+  </table></div>
+</section>
+
+<section class="card" id="r5" aria-labelledby="t5">
+  <div class="hd"><div class="num">5</div><h3 id="t5">Pan integral</h3></div>
+  <div class="tw"><table class="t">
+    <tr><th>#</th><th>Ingrediente</th><th>1000 g</th><th>750 g</th><th>500 g</th><th>Tip</th></tr>
+    <tr><td class="n">1</td><td class="ing">Agua</td><td>320 ml</td><td>260 ml</td><td>180 ml</td><td></td></tr>
+    <tr><td class="n">2</td><td class="ing">Sal</td><td>1.5 cucharas</td><td>1 cuchara</td><td>0.5 cuchara</td><td><span class="pill">en un costado del molde</span></td></tr>
+    <tr><td class="n">3</td><td class="ing">Azúcar</td><td>3.5 cucharadas</td><td>3 cucharadas</td><td>2.5 cucharadas</td><td><span class="pill">en un costado del molde</span></td></tr>
+    <tr><td class="n">4</td><td class="ing">Aceite</td><td>3 cucharadas</td><td>2.5 cucharadas</td><td>2 cucharadas</td><td></td></tr>
+    <tr><td class="n">5</td><td class="ing">Harina de alto gluten</td><td>1.75 tazas / 250 g</td><td>1.5 tazas / 210 g</td><td>1.25 tazas / 160 g</td><td></td></tr>
+    <tr><td class="n">6</td><td class="ing">Harina integral</td><td>1.75 tazas / 250 g</td><td>1.5 tazas / 210 g</td><td>1 taza / 140 g</td><td></td></tr>
+    <tr><td class="n">7</td><td class="ing">Levadura instantánea</td><td>2 cucharadas</td><td>1.5 cucharadas</td><td>1.25 cucharadas</td><td><span class="pill w">sobre la harina seca, sin líquidos</span></td></tr>
+  </table></div>
+</section>
+
+<section class="card" id="r6" aria-labelledby="t6">
+  <div class="hd"><div class="num">6</div><h3 id="t6">Pan de arroz</h3></div>
+  <div class="tw"><table class="t">
+    <tr><th>#</th><th>Ingrediente</th><th>1000 g</th><th>750 g</th><th>500 g</th><th>Tip</th></tr>
+    <tr><td class="n">1</td><td class="ing">Agua</td><td>200 ml</td><td>160 ml</td><td>100 ml</td><td></td></tr>
+    <tr><td class="n">2</td><td class="ing">Sal</td><td>2 cucharadas</td><td>1.5 cucharadas</td><td>1 cucharada</td><td><span class="pill">en un costado del molde</span></td></tr>
+    <tr><td class="n">3</td><td class="ing">Azúcar</td><td>3 cucharas</td><td>2.5 cucharas</td><td>2 cucharas</td><td><span class="pill">en un costado del molde</span></td></tr>
+    <tr><td class="n">4</td><td class="ing">Aceite</td><td>4 cucharadas</td><td>3 cucharadas</td><td>2.5 cucharadas</td><td></td></tr>
+    <tr><td class="n">5</td><td class="ing">Arroz cocido</td><td>2 tazas</td><td>1.5 tazas</td><td>1 taza</td><td><span class="pill w">arroz cocido frío</span></td></tr>
+    <tr><td class="n">6</td><td class="ing">Harina de alto gluten</td><td>2 tazas / 280 g</td><td>1.5 tazas / 210 g</td><td>1 taza / 140 g</td><td></td></tr>
+    <tr><td class="n">7</td><td class="ing">Levadura instantánea</td><td>2 cucharadas</td><td>1.5 cucharadas</td><td>1.25 cucharadas</td><td><span class="pill w">sobre la harina seca, sin líquidos</span></td></tr>
+  </table></div>
+</section>
+
+<section class="card" id="r7" aria-labelledby="t7">
+  <div class="hd"><div class="num">7</div><h3 id="t7">Pan libre de gluten</h3></div>
+  <div class="tw"><table class="t">
+    <tr><th>#</th><th>Ingrediente</th><th>1000 g</th><th>750 g</th><th>500 g</th><th>Tip</th></tr>
+    <tr><td class="n">1</td><td class="ing">Agua</td><td>270 ml</td><td>210 ml</td><td>150 ml</td><td></td></tr>
+    <tr><td class="n">2</td><td class="ing">Sal</td><td>1.5 cucharadas</td><td>1 cucharada</td><td>0.5 cucharada</td><td><span class="pill">en un costado del molde</span></td></tr>
+    <tr><td class="n">3</td><td class="ing">Azúcar</td><td>3.5 cucharas</td><td>3 cucharas</td><td>2.5 cucharas</td><td><span class="pill">en un costado del molde</span></td></tr>
+    <tr><td class="n">4</td><td class="ing">Aceite</td><td>3 cucharas</td><td>2.5 cucharas</td><td>2 cucharas</td><td></td></tr>
+    <tr><td class="n">5</td><td class="ing">Harina libre de gluten</td><td>2 tazas / 280 g</td><td>1.5 tazas / 210 g</td><td>1 taza / 140 g</td><td></td></tr>
+    <tr><td class="n">6</td><td class="ing">Harina de maíz</td><td>2 tazas / 280 g</td><td>1.5 tazas / 210 g</td><td>1 taza / 140 g</td><td><span class="pill">se puede reemplazar por harina de avena</span></td></tr>
+    <tr><td class="n">7</td><td class="ing">Levadura instantánea</td><td>1.5 cucharadas</td><td>1.25 cucharadas</td><td>1 cucharada</td><td><span class="pill w">sobre la harina seca, sin líquidos</span></td></tr>
+  </table></div>
+</section>
+
+<!-- ============ MASAS Y POSTRE ============ -->
+<h2 class="group"><svg class="icon" aria-hidden="true"><use href="#spark"/></svg><span>Masas y postre<small>Programas 8 a 11</small></span></h2>
+
+<section class="card" id="r8" aria-labelledby="t8">
+  <div class="hd"><div class="num">8</div><h3 id="t8">Postre</h3></div>
+  <div class="tw"><table class="t one">
+    <tr><th>#</th><th>Ingrediente</th><th>Cantidad</th></tr>
+    <tr><td class="n">1</td><td class="ing">Huevos</td><td>2 unidades</td></tr>
+    <tr><td class="n">2</td><td class="ing">Leche</td><td>1 taza</td></tr>
+    <tr><td class="n">3</td><td class="ing">Arroz cocido</td><td>1.5 tazas</td></tr>
+    <tr><td class="n">4</td><td class="ing">Azúcar</td><td>0.5 taza</td></tr>
+    <tr><td class="n">5</td><td class="ing">Pasas de uva</td><td>0.5 taza</td></tr>
+  </table></div>
+</section>
+
+<section class="card" id="r9" aria-labelledby="t9">
+  <div class="hd"><div class="num">9</div><h3 id="t9">Mix</h3></div>
+  <div class="tw"><table class="t one">
+    <tr><th>#</th><th>Ingrediente</th><th>Cantidad</th><th>Tip</th></tr>
+    <tr><td class="n">1</td><td class="ing">Agua</td><td>330 ml</td><td></td></tr>
+    <tr><td class="n">2</td><td class="ing">Sal</td><td>1 cuchara</td><td><span class="pill">en un costado del molde</span></td></tr>
+    <tr><td class="n">3</td><td class="ing">Aceite</td><td>3 cucharadas</td><td></td></tr>
+    <tr><td class="n">4</td><td class="ing">Harina de alto gluten</td><td>4 tazas / 560 g</td><td></td></tr>
+  </table></div>
+</section>
+
+<section class="card" id="r10" aria-labelledby="t10">
+  <div class="hd"><div class="num">10</div><h3 id="t10">Masa</h3></div>
+  <div class="tw"><table class="t" style="min-width:520px">
+    <tr><th>#</th><th>Ingrediente</th><th>1000 g</th><th>750 g</th><th>Tip</th></tr>
+    <tr><td class="n">1</td><td class="ing">Agua</td><td>330 ml</td><td>260 ml</td><td></td></tr>
+    <tr><td class="n">2</td><td class="ing">Sal</td><td>1 cuchara</td><td>1 cuchara</td><td><span class="pill">en un costado del molde</span></td></tr>
+    <tr><td class="n">3</td><td class="ing">Aceite</td><td>3 cucharadas</td><td>2.5 cucharadas</td><td></td></tr>
+    <tr><td class="n">4</td><td class="ing">Harina de alto gluten</td><td>4 tazas / 560 g</td><td>2.75 tazas / 400 g</td><td></td></tr>
+    <tr><td class="n">5</td><td class="ing">Levadura instantánea</td><td>1.5 cucharas</td><td>1.5 cucharas</td><td><span class="pill w">sobre la harina seca, sin líquidos</span></td></tr>
+  </table></div>
+</section>
+
+<section class="card" id="r11" aria-labelledby="t11">
+  <div class="hd"><div class="num">11</div><h3 id="t11">Amasado</h3></div>
+  <div class="tw"><table class="t one">
+    <tr><th>#</th><th>Ingrediente</th><th>Cantidad</th></tr>
+    <tr><td class="n">1</td><td class="ing">Agua</td><td>cantidad necesaria</td></tr>
+    <tr><td class="n">2</td><td class="ing">Sal</td><td>1 cuchara</td></tr>
+    <tr><td class="n">3</td><td class="ing">Aceite</td><td>3 cucharadas</td></tr>
+    <tr><td class="n">4</td><td class="ing">Harina de alto gluten</td><td>cantidad necesaria</td></tr>
+  </table></div>
+</section>
+
+<!-- ============ DULCES Y YOGURT ============ -->
+<h2 class="group"><svg class="icon" aria-hidden="true"><use href="#heart"/></svg><span>Dulces y yogurt<small>Programas 12 a 14</small></span></h2>
+
+<section class="card" id="r12" aria-labelledby="t12">
+  <div class="hd"><div class="num">12</div><h3 id="t12">Torta</h3></div>
+  <div class="tw"><table class="t one">
+    <tr><th>#</th><th>Ingrediente</th><th>Cantidad</th></tr>
+    <tr><td class="n">1</td><td class="ing">Agua</td><td>30 ml</td></tr>
+    <tr><td class="n">2</td><td class="ing">Huevos</td><td>3 unidades</td></tr>
+    <tr><td class="n">3</td><td class="ing">Azúcar</td><td>0.5 taza</td></tr>
+    <tr><td class="n">4</td><td class="ing">Aceite</td><td>2 cucharadas</td></tr>
+    <tr><td class="n">5</td><td class="ing">Harina con levadura</td><td>2 tazas / 280 g</td></tr>
+    <tr><td class="n">6</td><td class="ing">Levadura instantánea</td><td>1 cuchara</td></tr>
+  </table></div>
+  <p class="note">Disolvé el azúcar en los huevos y el agua, mezclá bien con un batidor de huevos eléctrico, después poné los otros ingredientes en el molde de pan y recién ahí arrancá este programa.</p>
+</section>
+
+<section class="card" id="r13" aria-labelledby="t13">
+  <div class="hd"><div class="num">13</div><h3 id="t13">Mermelada</h3></div>
+  <div class="tw"><table class="t one">
+    <tr><th>#</th><th>Ingrediente</th><th>Cantidad</th></tr>
+    <tr><td class="n">1</td><td class="ing">Pulpa de fruta</td><td>3 tazas</td></tr>
+    <tr><td class="n">2</td><td class="ing">Almidón</td><td>0.5 taza</td></tr>
+    <tr><td class="n">3</td><td class="ing">Azúcar</td><td>1 taza (poné a gusto)</td></tr>
+  </table></div>
+  <p class="note">Revolvé hasta que quede blanda. Podés agregar un poco de agua o no.</p>
+</section>
+
+<section class="card" id="r14" aria-labelledby="t14">
+  <div class="hd"><div class="num">14</div><h3 id="t14">Yogurt</h3></div>
+  <div class="tw"><table class="t one">
+    <tr><th>#</th><th>Ingrediente</th><th>Cantidad</th></tr>
+    <tr><td class="n">1</td><td class="ing">Leche</td><td>1000 ml</td></tr>
+    <tr><td class="n">2</td><td class="ing">Bacterias de ácido láctico</td><td>100 ml</td></tr>
+  </table></div>
+</section>
+
+<!-- ============ PROGRAMAS ESPECIALES ============ -->
+<h2 class="group"><svg class="icon" aria-hidden="true"><use href="#spark"/></svg><span>Programas especiales<small>Programas 15 a 19</small></span></h2>
+
+<section class="card" id="r15" aria-labelledby="t15">
+  <div class="hd"><div class="num">15</div><h3 id="t15">Hornear</h3></div>
+  <p style="margin:0 0 14px">Ajustá la temperatura de horneado con el botón de costra:</p>
+  <div class="facts">
+    <div class="fact"><span>Costra clara</span><strong>100 °C</strong></div>
+    <div class="fact"><span>Costra media</span><strong>150 °C</strong><em>por defecto</em></div>
+    <div class="fact"><span>Costra oscura</span><strong>200 °C</strong></div>
+  </div>
+</section>
+
+<section class="card" id="r16" aria-labelledby="t16">
+  <div class="hd"><div class="num">16</div><h3 id="t16">Arroz</h3></div>
+  <div class="tw"><table class="t one">
+    <tr><th>#</th><th>Ingrediente</th><th>Cantidad</th></tr>
+    <tr><td class="n">1</td><td class="ing">Agua</td><td>275 ml</td></tr>
+    <tr><td class="n">2</td><td class="ing">Arroz glutinoso</td><td>250 g</td></tr>
+  </table></div>
+  <p class="note">Se usa con las funciones de hornear y revolver. Remojá el arroz glutinoso 30 minutos antes de usarlo.</p>
+</section>
+
+<section class="card" id="r17" aria-labelledby="t17">
+  <div class="hd"><div class="num">17</div><h3 id="t17">Vino de arroz</h3></div>
+  <div class="tw"><table class="t one">
+    <tr><th>#</th><th>Ingrediente</th><th>Cantidad</th><th>Tip</th></tr>
+    <tr><td class="n">1</td><td class="ing">Arroz glutinoso</td><td>500 g</td><td><span class="pill w">remojar en agua 30 min antes</span></td></tr>
+    <tr><td class="n">2</td><td class="ing">Agua</td><td>cantidad necesaria</td><td></td></tr>
+    <tr><td class="n">3</td><td class="ing">Levadura de destilería</td><td>1 cuchara (3 g)</td><td></td></tr>
+  </table></div>
+</section>
+
+<section class="card" id="r18" aria-labelledby="t18">
+  <div class="hd"><div class="num">18</div><h3 id="t18">Descongelar</h3></div>
+  <div class="facts">
+    <div class="fact"><span>Tiempo predeterminado</span><strong>30 min</strong></div>
+    <div class="fact"><span>Se ajusta de</span><strong>0:10 a 2:00</strong></div>
+    <div class="fact"><span>Cada pulsación</span><strong>+ 10 min</strong></div>
+  </div>
+</section>
+
+<section class="card" id="r19" aria-labelledby="t19">
+  <div class="hd"><div class="num">19</div><h3 id="t19">Salteado</h3></div>
+  <div class="tw"><table class="t one" style="margin-bottom:16px">
+    <tr><th>#</th><th>Ingrediente</th><th>Cantidad</th></tr>
+    <tr><td class="n">1</td><td class="ing">Maní</td><td>300 g</td></tr>
+  </table></div>
+  <div class="facts">
+    <div class="fact"><span>Tiempo predeterminado</span><strong>0:30</strong></div>
+    <div class="fact"><span>Se ajusta de</span><strong>0:10 a 2:00</strong></div>
+    <div class="fact"><span>Pulsación corta</span><strong>± 1 min</strong></div>
+    <div class="fact"><span>Pulsación larga</span><strong>± 10 min</strong></div>
+  </div>
+</section>
+
+<p class="foot">Recetas del manual Ultracomb HP 2502 · ultracomb.com.ar</p>
+
+</div>
+</body>
+</html>
